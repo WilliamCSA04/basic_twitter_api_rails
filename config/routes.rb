@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   put    'user' => 'users#update'
   delete 'user' => 'users#delete'
 
+  # Login routes
+  post 'login' => 'login#login'
+  delete 'logout' => 'login#logout'
+
 end
