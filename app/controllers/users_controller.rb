@@ -32,6 +32,15 @@ class UsersController < ApplicationController
         end
     end
 
+    def delete
+        user = User.find(params[:user_id])
+        if user.destroy
+            render(json: users.as_json, status: :ok)                    
+        else
+            render(json: {error: "Erro ao salvar usuário"}, status: :ok)            
+        end
+    end
+
     private
 
     def user_params
