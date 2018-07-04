@@ -2,6 +2,7 @@ class LoginController < ApplicationController
 
     before_action :set_user
 
+    #Method to login
     def login
         if @user.login(login_params)
             render(json: @user.as_json, status: :ok)

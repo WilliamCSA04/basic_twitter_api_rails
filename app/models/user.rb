@@ -10,6 +10,7 @@ class User < ApplicationRecord
         serializable_hash(options)
     end
 
+    #Method to login a user
     def login(password)
         if is_password_correct?(password)
             self.update(logged: true)
@@ -20,12 +21,13 @@ class User < ApplicationRecord
 
     private
 
-    # Converte senha para encode64
+    # Convert password to encode64 and before save it
     def convert_password
         converted_password = Base64.encode64(self.password)
         self.password = converted_password
     end
 
+    # Check if a password matches
     def is_password_correct?(password)
         converted_real_password = Base64.encode64(self.password)
         converted_parameter_password = Base64.encode64(password)
