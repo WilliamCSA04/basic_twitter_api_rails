@@ -9,5 +9,9 @@ class UsersController < ApplicationController
         end    
     end
 
+    def get
+        users = User.all.as_json
+        render(json: users.as_json, status: :ok)
+    end
 
 end
