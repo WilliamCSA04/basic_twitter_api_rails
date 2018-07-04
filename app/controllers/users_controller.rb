@@ -2,15 +2,18 @@ class UsersController < ApplicationController
 
     before_action :set_user, except: [:get, :create]
 
+    # return a user given a user_id parameter
     def index
         render(json: @user.as_json, status: :ok)       
     end
 
+    # return all users from database
     def get
         users = User.all.as_json
         render(json: users.as_json, status: :ok)
     end
 
+    # create user with password, email and name params
     def create
         user = User.new(user_params)
         if user.save
@@ -20,6 +23,7 @@ class UsersController < ApplicationController
         end
     end
 
+    # update a user with password, email and name params
     def update
         if @user.update(user_params)
             render(json: @user.as_json, status: :ok)            
@@ -28,6 +32,7 @@ class UsersController < ApplicationController
         end
     end
 
+    # delete a user from database
     def delete
         if @user.destroy
             render(json: @user.as_json, status: :ok)                    
@@ -38,6 +43,7 @@ class UsersController < ApplicationController
 
     private
 
+    #Search for user and return if not find
     def set_user
         user = User.find_by_id(params[:user_id])
         if user.nil?
