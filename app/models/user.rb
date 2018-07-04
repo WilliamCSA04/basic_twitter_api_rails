@@ -4,8 +4,7 @@ class User < ApplicationRecord
     validates :name, length: { minimum: 3, maximum: 32 }
     validates_format_of :email, :with => /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
-    before_create :convert_password
-    before_update :convert_password
+    before_save :convert_password
 
     private
 
