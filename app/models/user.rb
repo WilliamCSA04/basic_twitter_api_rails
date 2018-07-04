@@ -19,6 +19,11 @@ class User < ApplicationRecord
         end
     end
 
+    #Logout user
+    def logout
+        self.update(logged: false)
+    end
+
     private
 
     # Convert password to encode64 and before save it

@@ -11,6 +11,12 @@ class LoginController < ApplicationController
         end
     end
 
+    #Method to logout
+    def logout
+        @user.logout
+        render(body: nil, status: :ok)        
+    end
+
     private
 
     #Search for user and return if not find
