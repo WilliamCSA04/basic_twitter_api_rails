@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
     before_save :convert_password
 
+    def as_json(options = {exclude: :password})
+        serializable_hash(options)
+    end
+
     private
 
     # Converte senha para encode64
