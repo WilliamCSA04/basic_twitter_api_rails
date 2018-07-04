@@ -14,4 +14,13 @@ class UsersController < ApplicationController
         render(json: users.as_json, status: :ok)
     end
 
+    def create
+        user = User.new(create_params)
+        if user.save
+            render(json: users.as_json, status: :ok)
+        else
+            render(json: {error: "Erro ao salvar usuário"}, status: :ok)            
+        end
+    end
+
 end
