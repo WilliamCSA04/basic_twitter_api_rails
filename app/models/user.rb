@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
     private
 
+    # Converte senha para encode64
     def convert_password
         converted_password = Base64.encode64(self.password)
         self.password = converted_password
