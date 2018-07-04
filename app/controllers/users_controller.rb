@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         if user.save
             render(json: user.as_json, status: :ok)
         else
-            render(json: {error: "Erro ao salvar usuário"}, status: :ok)            
+            render(json: {error: "Erro ao criar usuário"}, status: :ok)            
         end
     end
 
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
         if @user.update(user_params)
             render(json: @user.as_json, status: :ok)            
         else
-            render(json: {error: "Erro ao salvar usuário"}, status: :ok)            
+            render(json: {error: "Erro ao atualizar usuário"}, status: :ok)            
         end
     end
 
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
         if @user.destroy
             render(json: @user.as_json, status: :ok)                    
         else
-            render(json: {error: "Erro ao salvar usuário"}, status: :ok)            
+            render(json: {error: "Erro ao deletar usuário"}, status: :ok)            
         end
     end
 
