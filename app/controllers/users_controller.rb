@@ -15,12 +15,18 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.new(create_params)
+        user = User.new(user_params)
         if user.save
             render(json: users.as_json, status: :ok)
         else
             render(json: {error: "Erro ao salvar usuário"}, status: :ok)            
         end
+    end
+
+    private
+
+    def user_params
+        params.permit(:email, :name, :password)
     end
 
 end
