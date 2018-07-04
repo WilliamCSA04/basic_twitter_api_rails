@@ -6,14 +6,14 @@ class User < ApplicationRecord
 
     before_save :convert_password
 
-    def as_json(options = {exclude: :password})
+    def as_json(options = {exclude: [:password, :login_datetime]})
         serializable_hash(options)
     end
 
     #Method to login a user
     def login(password)
         if is_password_correct?(password)
-            self.update(logged: true)
+            self.update(logged: true, login_datetime: Time.now)
         else
             false
         end
@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
     #Logout user
     def logout
-        self.update(logged: false)
+        self.update(logged: false, login_datetime: nil)
     end
 
     private
